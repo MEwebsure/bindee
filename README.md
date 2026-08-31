@@ -1,3 +1,48 @@
-# BINDEE
+# BINDEE AI Smart Waste Classifier
 
-Initial project repository. Full documentation and source code are proposed in branch `bindee-ai-update`.
+ระบบต้นแบบคัดแยกขยะอัจฉริยะด้วยกล้อง โมเดล Google Teachable Machine และ Arduino/ESP32
+
+## ไฟล์ในโครงการ
+
+- `docs/BINDEE_คู่มือรวม_5_ข้อ_ฉบับละเอียด.docx` — คู่มือฉบับละเอียดรวม 5 ข้อ
+- `web/index.html` — หน้าเว็บควบคุมและแสดงผล
+- `web/style.css` — รูปแบบหน้าจอและ Responsive layout
+- `web/app.js` — โหลดโมเดล AI เฉลี่ยผล 10 เฟรม และเชื่อม Web Serial
+- `arduino/BINDEE_Controller.ino` — ควบคุม Servo และตอบกลับ `BINDEE_READY`/`DONE`
+
+## โมเดล AI
+
+โครงการใช้โมเดล Teachable Machine:  
+<https://teachablemachine.withgoogle.com/models/T_bBfZNqi/>
+
+คลาสและรหัสคำสั่ง:
+
+| ประเภท | รหัส |
+|---|---|
+| พลาสติก | `P` |
+| กระดาษ | `A` |
+| แก้ว | `G` |
+| โลหะ | `M` |
+| ไม่รับรอง (Reject) | `R` |
+| หยุดฉุกเฉิน | `S` |
+
+## วิธีเปิดเว็บไซต์
+
+1. เปิด Terminal ในโฟลเดอร์ `web`
+2. รัน `python -m http.server 8000`
+3. เปิด <http://localhost:8000> ด้วย Chrome หรือ Edge
+4. กด **เปิดกล้อง** และอนุญาตสิทธิ์กล้อง
+5. อัปโหลด `arduino/BINDEE_Controller.ino` ลงบอร์ด ปิด Serial Monitor แล้วกด **เชื่อมต่อบอร์ด**
+
+หน้าเว็บใช้ค่าเฉลี่ย 10 เฟรม รับรองผลเมื่อความมั่นใจอย่างน้อย 85% และคะแนนอันดับหนึ่งห่างจากอันดับสองอย่างน้อย 10% หากไม่ผ่านจะส่งไปช่อง Reject
+
+## ข้อควรระวัง
+
+- โมเดลเหมาะสำหรับต้นแบบและการสาธิต ควรทดสอบด้วยภาพอิสระอย่างน้อย 150 ภาพก่อนอ้างค่าความแม่นยำ
+- Servo ควรใช้แหล่งจ่าย 5–6V แยกจาก USB และต่อกราวด์ร่วม
+- ทดสอบ E-stop และกลไกโดยไม่ต่อโหลดก่อนใช้งานจริง
+- ห้ามยื่นมือเข้าใกล้กลไกระหว่างทำงาน
+
+## สถานะ
+
+คู่มือ เว็บไซต์ และโค้ดควบคุมพร้อมสำหรับการทดสอบต้นแบบ ณ วันที่ 31 สิงหาคม 2569
