@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BINDEE AI Smart Waste Classifier</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+</head>
+<body>
+  <main class="shell">
+    <header><div><p class="eyebrow">BINDEE</p><h1>AI Smart Waste Classifier</h1><p>ระบบคัดแยกขยะอัจฉริยะแบบเรียลไทม์</p></div><span id="serialBadge">● ยังไม่เชื่อมต่อบอร์ด</span></header>
+    <section class="controls"><button id="startBtn">เปิดกล้อง</button><button id="connectBtn">เชื่อมต่อบอร์ด</button><button id="testReject" class="danger">ทดสอบ Reject</button></section>
+    <p id="status" class="status">พร้อมเริ่มต้น</p>
+    <section class="grid">
+      <article class="card"><h2>ภาพจากกล้อง</h2><div id="webcam" class="webcam">กด “เปิดกล้อง” เพื่อเริ่ม</div></article>
+      <article class="card"><h2>ผลวิเคราะห์</h2><div id="decision" class="decision"><i>—</i><div><small>สถานะ</small><h2>รอข้อมูล</h2></div><strong>0%</strong></div><p id="verdict" class="verdict">ยังไม่มีผลการประเมิน</p><div id="bars"></div></article>
+    </section>
+    <section class="card"><h2>บันทึกระบบ</h2><pre id="log">ระบบพร้อมใช้งาน</pre></section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
